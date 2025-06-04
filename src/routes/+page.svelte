@@ -30,7 +30,7 @@
             <button class={divStyle_button}>Get Started</button>
         </div>
 
-        <div class={divStyle}>
+        <div class={`${divStyle} mx-auto`}>
             <h1 class={divStyle_h1}>IV Flow Rate</h1>
             <p class={divStyle_p}>Calculate drip rates and infusion times</p>
             <h2 class={divStyle_h2}>Tools for calculating IV flow rates, drip factors, and infusion durations.</h2>
