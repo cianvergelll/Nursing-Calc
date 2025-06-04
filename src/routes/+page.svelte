@@ -1,7 +1,49 @@
-<script lang="js"></script>
+<script lang="js">
 
-<div class="w-screen h-screen flex flex-col items-center justify-center border">
-    <div class="w-full h-[10%]"></div>
+    const navButton = "px-5 py-3 mx-2 rounded-md hover:bg-sky-500 transition-colors duration-300 border-b-3 border-white";
+    const divStyle ="h-full w-[30%] border border-gray-300 rounded-lg flex flex-col pl-5 shadow-xl";
+    const divStyle_h1 = "font-bold text-3xl mt-7 ml-5";
+    const divStyle_p = "text-s ml-5 text-gray-600 mb-5";
+    const divStyle_h2 = "text-lg px-5";
+    const divStyle_button = "py-3 bg-gradient-to-r from-sky-500 to-sky-800 w-[40%] rounded-lg text-white font-bold mt-10 ml-5 hover:from-sky-800 hover:to-sky-500 transition hover:scale-105 transition-colors duration-300";
+</script>
 
+<div class="w-screen h-screen flex flex-col items-center justify-start">
+    <div class="w-full h-[10%] flex flex-row items-center bg-gradient-to-r from-sky-600 to-sky-700">
+        <h1 class="text-white text-3xl font-bold ml-10 text">Nursing Calc</h1>
+        <ul class="flex flex-row ml-auto mr-10 text-white text-lg space-between-x-4">
+            <li><a href="/" class={navButton}>Home</a></li>
+            <li><a href="/" class={navButton}>Calculators</a></li>
+            <li><a href="/" class={navButton}>References</a></li>
+            <li><a href="/" class={navButton}>About</a></li>
+        </ul>
+    </div>
 
+    <h1 class="text-5xl font-bold mt-10 mb-5">Nursing Drug Calculations</h1>
+    <p class="text-xl mb-10">Accurate and reliable drug calculation tools for nursing professionals and students.</p>
+
+    <div class="w-screen h-[40%] flex flex-row justify center items-center">
+        <div class= {`${divStyle} mx-auto`}>
+            <h1 class={divStyle_h1}>Dosage Calculators</h1>
+            <p class={divStyle_p}>Calculate medication dosage from patient data</p>
+            <h2 class={divStyle_h2}>Access tools for calculating dosages based on weight, body surface area, and other factors.</h2>
+            <button class={divStyle_button}>Get Started</button>
+        </div>
+
+        <div class={divStyle}>
+            <h1 class={divStyle_h1}>IV Flow Rate</h1>
+            <p class={divStyle_p}>Calculate drip rates and infusion times</p>
+            <h2 class={divStyle_h2}>Tools for calculating IV flow rates, drip factors, and infusion durations.</h2>
+            <button class={divStyle_button}>Calculate Now</button>
+        </div>
+
+        <div class={`${divStyle} mx-auto`}>
+            <h1 class={divStyle_h1}>Pediatric Calculations</h1>
+            <p class={divStyle_p}>Specialized calculations for pediatric patients</p>
+            <h2 class={divStyle_h2}>Age and weight-based dosing calculators specifically designed for pediatric care.</h2>
+            <button class={divStyle_button}>Explore Now</button>
+        </div>
+    </div>
+
+    <div class="bg-sky-100 w-[95%] mt-10"></div>
 </div>
