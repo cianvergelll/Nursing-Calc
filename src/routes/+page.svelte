@@ -45,5 +45,9 @@
         </div>
     </div>
 
-    <div class="bg-sky-100 w-[95%] mt-10"></div>
+    <div class="bg-sky-100 w-[95%] mt-10 rounded-xl shadow-xl">
+        <h1 class={divStyle_h1}>Why Use NurseCalc?</h1>
+
+        <div
+    </div>
 </div>
