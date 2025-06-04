@@ -2,17 +2,17 @@
 
     const inputStyle = "border p-2 rounded mb-2";
     const pStyle = "my-2 ml-5";
-    let totalDose = 0;
-    let weight = '';
-    let dosePerKg = '';
-    let submitted = false;
-    let selectedWeightUnit = 'kg';
+    let totalDose =  $state(0);;
+    let weight = $state('');
+    let dosePerKg =  $state('');
+    let submitted = $state(false);
+    let selectedWeightUnit = $state('kg');
     let weightOptions = [
         { value: 'kg', label: 'kg' },
         { value: 'lbs', label: 'lbs' }
     ];
 
-    let selectedDosageUnit = 'mg';
+    let selectedDosageUnit = $state('mg');
     let dosageUnits = [
         {value: 'mg', label: 'mg'},
         {value: 'mcg', label: 'mcg'},
@@ -35,7 +35,7 @@
         return parseFloat(dosePerKg);
     }
 
-    let weightInKg = 0;
+    let weightInKg =  $state(0);;
 
     function calculateDosage() {
         submitted = true;
