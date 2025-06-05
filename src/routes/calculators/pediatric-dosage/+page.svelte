@@ -23,33 +23,30 @@
     ]
 
     function convertHeight() {
-        if (selectedHeightOption.value === 'm') {
-            height = parseFloat(height) * 100;
-        } else if (selectedHeightOption.value === 'in') {
-            height = parseFloat(height) * 2.54;
-        } else if (selectedHeightOption.value === 'cm') {
-            height = parseFloat(height);
-        }
+    if (!height) return 0;
+    if (selectedHeightOption === 'm') {
+        return parseFloat(height) * 100;
+    } else if (selectedHeightOption === 'in') {
+        return parseFloat(height) * 2.54;
+    } 
+    return parseFloat(height);
+}
+
+function convertWeight() {
+    if (!weight) return 0;
+    if (selectedWeightOption === 'lbs') {
+        return parseFloat(weight) * 0.45359237;
     }
+    return parseFloat(weight);
+}
 
-    function convertWeight() {
-        if (selectedWeightOption.value === 'lbs') {
-            weight = parseFloat(weight) * 0.453592;
-        } else if (selectedWeightOption.value === 'kg') {
-            weight = parseFloat(weight);
-        }
-    }
+     function calculateBSA() {
+        bsaSubmitted = true;
+        
+        const heightInCm = convertHeight();
+        const weightInKg = convertWeight();
 
-    function calculateBSA() {
-        let bsaSubmitted = true;
-        const h = convertHeight();
-        const w = convertWeight();
-
-        if (!isNaN(vol) && !isNaN(timeInHours) && timeInHours > 0) {
-            bsaResult = (Math.sqrt((h * w) / 3600)).toFixed(2);
-        } else {
-            bsaResult = '';
-        }
+        bsaResult = Math.sqrt((heightInCm * weightInKg) / 3600).toFixed(2);
     }
 
     const inputStyle = "border p-2 rounded mb-2";
@@ -116,12 +113,13 @@
             <div class="w-full mb-5 bg-sky-100 p-4 rounded">
                 <label for="Calculated Dose" class="text-lg">Calculated Dose:</label>
                 <p class="font-bold text-3xl my-1">{`${bsaResult} m²`}</p>
-                <p>{`Based on √(${h} (cm) × ${w} (kg) ÷ 3600)`}</p>
+                <p>{`Based on √(${convertHeight()} (cm) × ${convertWeight()} (kg) ÷ 3600)`}</p>
             </div>
         {/if}
 
-        <button onclick={calculateDosage} class="py-2 mb-4 bg-sky-600 text-white px-10 rounded-lg w-full hover:bg-blue-700 transition hover:scale-100">Calculate Dose</button>
-    </div> 
+        <button onclick={calculateBSA} class="py-2 mb-4 bg-sky-600 text-white px-10 rounded-lg w-full hover:bg-blue-700 transition hover:scale-100">Calculate Body Surface Area (BSA)</button>
+    </div>
+        
     {/if}
 </div>
 

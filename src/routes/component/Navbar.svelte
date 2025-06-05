@@ -1,5 +1,6 @@
 <script lang="js">
     import { FontAwesomeIcon } from '@fortawesome/svelte-fontawesome';
+    import { faHome, faCalculator, faBook, faExclamationCircle } from '@fortawesome/free-solid-svg-icons';
     const navButton = "px-5 py-3 mx-2 rounded-md hover:bg-sky-500 transition-colors duration-300 border-b-3 border-white";
 </script>
 

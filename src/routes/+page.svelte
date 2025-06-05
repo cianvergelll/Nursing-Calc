@@ -1,7 +1,7 @@
 <script lang="js">
 	import { goto } from "$app/navigation";
     import Navbar from "./component/Navbar.svelte";
-    import '../icons';
+    import '../lib/icons';
     import { FontAwesomeIcon } from '@fortawesome/svelte-fontawesome';
 
     function handleDosageCalc() {
