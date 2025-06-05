@@ -1,4 +1,5 @@
 <script lang="js">
+    import Navbar from "../../component/Navbar.svelte";
 
     const inputStyle = "border p-2 rounded mb-2";
     const pStyle = "my-2 ml-5";
@@ -46,6 +47,7 @@
     }
 </script>
 
+<Navbar />
 <div class="w-[50%] flex flex-col mx-auto">
     <p class="font-bold text-3xl mt-8 ml-5">Dosage Calculator</p>
     <div class="w-full my-5 border border-gray-300 py-4 rounded-xl shadow-lg">

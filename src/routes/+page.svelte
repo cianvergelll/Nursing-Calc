@@ -1,5 +1,8 @@
 <script lang="js">
 	import { goto } from "$app/navigation";
+    import Navbar from "./component/Navbar.svelte";
+    import '../icons';
+    import { FontAwesomeIcon } from '@fortawesome/svelte-fontawesome';
 
     function handleDosageCalc() {
         goto('/calculators/dosage');
@@ -9,7 +12,6 @@
         goto('/calculators/iv-flow');
     }
 
-    const navButton = "px-5 py-3 mx-2 rounded-md hover:bg-sky-500 transition-colors duration-300 border-b-3 border-white";
     const divStyle ="w-[30%] border border-gray-300 rounded-lg flex flex-col pl-5 shadow-xl";
     const divStyle_h1 = "font-bold text-3xl mt-7 ml-5";
     const divStyle_p = "text-s ml-5 text-gray-600 mb-5";
@@ -18,16 +20,7 @@
 </script>
 
 <div class="w-full flex flex-col items-center justify-start overflow-x-hidden">
-    <div class="w-full py-5 flex flex-row items-center bg-gradient-to-r from-sky-600 to-sky-700">
-        <h1 class="text-white text-3xl font-bold ml-10 text">Nursing Calc</h1>
-        <ul class="flex flex-row ml-auto mr-10 text-white text-lg space-between-x-4">
-            <li><a href="/" class={navButton}>Home</a></li>
-            <li><a href="/" class={navButton}>Calculators</a></li>
-            <li><a href="/" class={navButton}>References</a></li>
-            <li><a href="/" class={navButton}>About</a></li>
-        </ul>
-    </div>
-
+    <Navbar />
     <h1 class="text-5xl font-bold mt-10 mb-5">Nursing Drug Calculations</h1>
     <p class="text-xl mb-10">Accurate and reliable drug calculation tools for nursing professionals and students.</p>
 
