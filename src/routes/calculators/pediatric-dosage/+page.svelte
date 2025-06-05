@@ -8,6 +8,16 @@
     let bsaSubmitted = $state(false);
     let pdcSubmitted = $state(false);
     let bsaResult = $state(0);
+    let adultDose = $state('');
+    let patientBSA = $state('');
+    let PediatricDose = $state(0);
+
+    let selectedAdultDose = $state('mg');
+    let adultDoseOption = [
+        { value: 'mg', label: 'mg' },
+        { value: 'mcg', label: 'mcg' },
+        { value: 'g', label: 'g' }
+    ];
 
     let selectedWeightOption = $state('kg');
     let weightOptions = [
@@ -30,17 +40,17 @@
         return parseFloat(height) * 2.54;
     } 
     return parseFloat(height);
-}
-
-function convertWeight() {
-    if (!weight) return 0;
-    if (selectedWeightOption === 'lbs') {
-        return parseFloat(weight) * 0.45359237;
     }
-    return parseFloat(weight);
-}
 
-     function calculateBSA() {
+    function convertWeight() {
+        if (!weight) return 0;
+        if (selectedWeightOption === 'lbs') {
+            return parseFloat(weight) * 0.45359237;
+        }
+        return parseFloat(weight);
+    }
+
+    function calculateBSA() {
         bsaSubmitted = true;
         
         const heightInCm = convertHeight();
@@ -50,6 +60,12 @@ function convertWeight() {
     }
 
     const inputStyle = "border p-2 rounded mb-2";
+
+    function calculatePediatricDose() {
+        pdcSubmitted = true;
+
+        PediatricDose = ((patientBSA / 1.73) * adultDose).toFixed(2);
+    }
  </script>
 
 <Navbar />
@@ -120,13 +136,37 @@ function convertWeight() {
         <button onclick={calculateBSA} class="py-2 mb-4 bg-sky-600 text-white px-10 rounded-lg w-full hover:bg-blue-700 transition hover:scale-100">Calculate Body Surface Area (BSA)</button>
     </div>
     {:else if activeTab === 'pdc'}
-        <div class="w-full border border-gray-300 py-4 rounded-xl px-7 shadow-lg mt-5">
+        <div class="w-full border border-gray-300 py-4 rounded-xl px-7 shadow-lg my-5">
             <p class="text-2xl font-bold flex flex-col">Pediatric Dosage Calculator</p>
             <p class="text-sm mb-5 text-gray-500">Calculate pediatric dosages based on (BSA m² / 1.73) x Adult Dose</p>
             
-            <!-- Add your pediatric dosage calculation logic here -->
-            <p class="text-lg mb-4">This section is under development.</p>
+            <div class="flex flex-col mb-5">
+            <label for="patient-weight" class="text-m mb-2 text-left">Body Surface Area:</label>
+            <input type="number" bind:value={patientBSA} placeholder="Enter Body Surface Area" />
+            </div>
+
+            <label for="patient-weight" class="text-m text-left">Adult Dose:</label>
+                <div class="flex justify-between mb-5">
+                    <input type="number" bind:value={adultDose} placeholder="Enter adult dose" class={`${inputStyle} w-[60%]`}/>
+                    <select bind:value={selectedAdultDose} class={`${inputStyle} w-[35%] pl-5`}>
+                    {#each adultDoseOption as option}
+                        <option value={option.value}>{option.label}</option>
+                    {/each}
+                    </select>
+                </div>
+
+                {#if pdcSubmitted && (!adultDose || !patientBSA)}
+            <p class="text-red-500 mb-4">Please enter adult dose and patient BSA</p>
+        {:else if pdcSubmitted && adultDose && patientBSA}
+            <div class="w-full mb-5 bg-sky-100 p-4 rounded">
+                <label for="Calculated Dose" class="text-lg">Calculated Dose:</label>
+                <p class="font-bold text-3xl my-1">{`${PediatricDose} ${selectedAdultDose}`}</p>
+                <p>{`Based on (${patientBSA} m² / 1.73) x ${adultDose}`}</p>
+            </div>
+        {/if}
+
+        <button onclick={calculatePediatricDose} class="py-2 mb-4 bg-sky-600 text-white px-10 rounded-lg w-full hover:bg-blue-700 transition hover:scale-100">Calculate Pediatric Dose</button>
         </div>
-    {/if}
+    {/if}   
 </div>
 
