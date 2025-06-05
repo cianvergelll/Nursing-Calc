@@ -15,6 +15,9 @@
         goto ('/calculators/pediatric-dosage');
     }
 
+    function Dilution() {
+        goto ('/calculators/dilution');
+    }
     const divStyle_button = "py-3 bg-gradient-to-r from-sky-500 to-sky-800 rounded-lg text-white font-bold mt-5 mb-10 ml-5 hover:from-sky-800 hover:to-sky-500 transition-colors duration-300";
     const divStyle2_button = "py-3 bg-gradient-to-r from-sky-500 to-sky-800 rounded-lg text-white font-bold mt-11 mb-10 ml-5 hover:from-sky-800 hover:to-sky-500 transition-colors duration-300";
     const divStyle = "w-[30%] border border-gray-300 rounded-lg flex flex-col pl-5 shadow-xl px-10";
@@ -56,7 +59,7 @@
         <p class={`${pStyle} text-sm text-gray-600`}>Calculate medication dilutions and concentrations</p>
         <FontAwesomeIcon icon="flask" class="text-5xl text-sky-800 my-5" />
         <p class={pStyle}>Calculate dilutions using the formula:<br>Concentration = Amount of drug ÷ Volume</p>
-        <button class={divStyle2_button}>Calculate Dosage <FontAwesomeIcon icon="arrow-right" class="inline ml-2" /></button>
+        <button onclick={Dilution} class={divStyle2_button}>Calculate Dosage <FontAwesomeIcon icon="arrow-right" class="inline ml-2" /></button>
     </div>
 
     <div class={divStyle}>

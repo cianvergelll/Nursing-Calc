@@ -54,7 +54,7 @@
         totalDripRate = (flowRate * dropFactor) / 60;
     }
     const inputStyle = "border p-2 rounded mb-2";
-     const pStyle = "my-2 ml-5";
+    const pStyle = "my-2 ml-5";
 </script>
 
 <Navbar />

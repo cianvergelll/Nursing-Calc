@@ -66,6 +66,8 @@
 
         PediatricDose = ((patientBSA / 1.73) * adultDose).toFixed(2);
     }
+    
+    const pStyle = "my-2 ml-5";
  </script>
 
 <Navbar />
@@ -167,6 +169,25 @@
 
         <button onclick={calculatePediatricDose} class="py-2 mb-4 bg-sky-600 text-white px-10 rounded-lg w-full hover:bg-blue-700 transition hover:scale-100">Calculate Pediatric Dose</button>
         </div>
-    {/if}   
+    {/if}
+
+    <div class="w-full">
+        <p class="font-bold my-5 ml-5 text-2xl">How to Use This Calculator</p>
+         <p class="text-lg ml-5">Body Surface Area (BSA) Calculator:</p>
+        <p class={pStyle}>1.  Enter the weight of the patient</p>
+        <p class={pStyle}>2.  Enter the height of the patient</p>
+        <p class={pStyle}>3.  Click "Calculate Body Surface Area (BSA)" to determine the BSA</p>
+
+         <p class="text-lg ml-5 mt-5">Pediatric Dosage Calculator:</p>
+        <p class={pStyle}>1.  Enter the Body Surface Area (BSA)</p>
+        <p class={pStyle}>2.  Select the appropriate unit for the adult dose (g, mg, mcg)</p>
+        <p class={pStyle}>3.  Click "Calculate Pediatric Dose" to determine the Pediatric Dose based on the BSA of the patient</p>
+  </div>
+
+  <div class="bg-sky-100 p-4 rounded-lg mt-5 mb-10">
+        <p class="font-bold text-xl">Formula Used:</p>
+        <p class="my-2 text-lg">Body Surface Area (m²) = √(Height (cm) × Weight (kg) ÷ 3600)</p>
+        <p class="my-2 text-lg">Pediatric Dose = (BSA m² / 1.73) x Adult Dose</p>
+  </div>
 </div>
 
