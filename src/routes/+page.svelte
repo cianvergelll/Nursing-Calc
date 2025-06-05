@@ -1,4 +1,14 @@
 <script lang="js">
+	import { goto } from "$app/navigation";
+
+    function handleDosageCalc() {
+        goto('/calculators/dosage');
+    }
+
+    function handleIVFlowCalc() {
+        goto('/calculators/iv-flow');
+    }
+
     const navButton = "px-5 py-3 mx-2 rounded-md hover:bg-sky-500 transition-colors duration-300 border-b-3 border-white";
     const divStyle ="w-[30%] border border-gray-300 rounded-lg flex flex-col pl-5 shadow-xl";
     const divStyle_h1 = "font-bold text-3xl mt-7 ml-5";
@@ -26,14 +36,14 @@
             <h1 class={divStyle_h1}>Dosage Calculator</h1>
             <p class={divStyle_p}>Calculate medication dosage from patient data</p>
             <h2 class={divStyle_h2}>Access tools for calculating dosages based on weight, body surface area, and other factors.</h2>
-            <button class={divStyle_button}>Get Started</button>
+            <button class={divStyle_button} on:click={handleDosageCalc}>Get Started</button>
         </div>
 
         <div class={`${divStyle} mx-auto`}>
             <h1 class={divStyle_h1}>IV Flow Rate</h1>
             <p class={divStyle_p}>Calculate drip rates and infusion times</p>
             <h2 class={divStyle_h2}>Tools for calculating IV flow rates, drip factors, and infusion durations.</h2>
-            <button class={divStyle_button}>Calculate Now</button>
+            <button class={divStyle_button} on:click={handleIVFlowCalc}>Calculate Now</button>
         </div>
 
         <div class={`${divStyle} mx-auto`}>

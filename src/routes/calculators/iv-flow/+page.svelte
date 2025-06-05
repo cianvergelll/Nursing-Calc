@@ -11,6 +11,14 @@
         { value: 'min', label: 'minutes' }
     ];
 
+    let selecteddripFactor = $state('20');
+    let dropFactorOptions = [
+      { value: '10', label: '10 drops/mL (Macrodrip)' },
+      { value: '15', label: '15 drops/mL (Macrodrip)' },
+      { value: '20', label: '20 drops/mL (Macrodrip)' },
+      { value: '60', label: '60 drops/mL (Microdrip)' }
+    ];
+
     function convertTime() {
       if (selectedTimeUnit === 'min') {
         return parseFloat(infusionTime) / 60;
@@ -24,6 +32,7 @@
     }
 
     const inputStyle = "border p-2 rounded mb-2";
+     const pStyle = "my-2 ml-5";
 </script>
 
 <div class="w-[50%] flex flex-col mx-auto">
@@ -66,25 +75,58 @@
           <input type="number" bind:value={volumeInMl} placeholder="Enter volume in mL" />
         </div>
 
-        <div class="flex  mb-5">
-          <label for="patient-weight" class="text-m mb-2 text-left">Infusion Time</label>
+        <label for="patient-weight" class="text-m mb-5 text-left">Infusion Time</label>
+        <div class="flex justify-between mb-5">
           <input type="number" bind:value={infusionTime} placeholder="Enter time" class={`${inputStyle} w-[60%]`}/>
-          <select bind:value={selectedTimeUnit} class={`${inputStyle} w-[35%]`}>
+          <select bind:value={selectedTimeUnit} class={`${inputStyle} w-[35%] pl-5`}>
             {#each timeOptions as option}
                 <option value={option.value}>{option.label}</option>
             {/each}
         </select>
         </div>
+        <button onclick={calculateIVFlowRate} class="py-2 mb-4 bg-sky-600 text-white px-10 rounded-lg w-full hover:bg-blue-700 transition hover:scale-100">Calculate Flow Rate</button>
     </div>
   {:else}
     <div class="w-full border border-gray-300 py-4 rounded-xl px-7 shadow-xl my-5">
         <p class="text-2xl font-bold flex flex-col">Drip Rate Calculator (drops/min)</p>
         <p class="text-sm mb-5 text-gray-500">Calculate the drip rate in drops per minute using the formula: Drip Rate = (Flow Rate × Drop Factor) ÷ 60</p>
         
-        <label for="patient-weight" class="text-m mb-2 text-left">Flow Rate (mL/hr)</label>
-        <div class="flex justify-between mb-5">
+        <div class="flex flex-col mb-5">
+          <label for="patient-weight" class="text-m mb-2 text-left">Flow Rate (mL/hr)</label>
+          <input type="number" bind:value={volumeInMl} placeholder="Enter flow rate in mL/hr" />
         </div>
+
+        <div class="flex flex-col mb-5">
+          <label for="patient-weight" class="text-m mb-2 text-left">Drop Factor (drops/mL)</label>
+          <select bind:value={selecteddripFactor} class={`${inputStyle} pl-5`}>
+              {#each dropFactorOptions as option}
+                  <option value={option.value}>{option.label}</option>
+              {/each}
+          </select>
+        </div>
+        <button onclick={calculateIVFlowRate} class="py-2 mb-4 bg-sky-600 text-white px-10 rounded-lg w-full hover:bg-blue-700 transition hover:scale-100">Calculate Drip Rate</button>
     </div>
+
   {/if}
+
+  <div class="w-full">
+        <p class="font-bold my-5 ml-5 text-2xl">How to Use This Calculator</p>
+         <p class="text-lg ml-5">mL/hr Calculator:</p>
+        <p class={pStyle}>1.  Enter the total volume to be infused in milliliters (mL)</p>
+        <p class={pStyle}>2.  Enter the infusion time in hours or minutes</p>
+        <p class={pStyle}>3.  Click "Calculate Flow Rate" to determine the flow rate in mL/hr</p>
+
+         <p class="text-lg ml-5 mt-5">Drip Rate Calculator:</p>
+        <p class={pStyle}>1.  Enter the flow rate in mL/hr</p>
+        <p class={pStyle}>2.  Select the appropriate drop factor based on your IV tubing (10, 15, 20, or 60 drops/mL)</p>
+        <p class={pStyle}>3.  Click "Calculate Drip Rate" to determine the drip rate in drops/min</p>
+  </div>
+
+  <div class="bg-sky-100 p-4 rounded-lg mt-5 mb-10">
+        <p class="font-bold text-xl">Formula Used:</p>
+        <p class="my-2 text-lg">Flow Rate (mL/hr) = Volume (mL) ÷ Time (hours)</p>
+        <p class="my-2 text-lg">Drip Rate (drops/min) = (Flow Rate (mL/hr) × Drop Factor (drops/mL)) ÷ 60</p>
+        <p class="text-sm">If time is entered in minutes, it is first converted to hours using the conversion factor 1 hour = 60 minutes.</p>
+  </div>
 
 </div>

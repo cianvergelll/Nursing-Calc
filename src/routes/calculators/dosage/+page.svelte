@@ -60,7 +60,7 @@
         <label for="patient-weight" class="text-m mb-2 text-left">Patient Weight:</label>
         <div class="flex justify-between mb-5">
         <input type="number" bind:value={weight} placeholder="Enter weight" class={`${inputStyle} w-[60%]`} />
-        <select bind:value={selectedWeightUnit} class={`${inputStyle} w-[35%]`}>
+        <select bind:value={selectedWeightUnit} class={`${inputStyle} w-[35%] pl-5`}>
             {#each weightOptions as option}
                 <option value={option.value}>{option.label}</option>
             {/each}
@@ -70,7 +70,7 @@
         <label for="dosage-per-kg" class="text-m mb-2 text-left">Dose Per kg:</label>
         <div class="flex justify-between mb-5">
         <input type="number" bind:value={dosePerKg} placeholder= "Enter dosage"  class={`${inputStyle} w-[60%]`} />
-        <select bind:value={selectedDosageUnit} class={`${inputStyle} w-[35%]`}>
+        <select bind:value={selectedDosageUnit} class={`${inputStyle} w-[35%] pl-5`}>
             {#each dosageUnits as unit}
                 <option value={unit.value}>{unit.label}</option>
             {/each}
@@ -87,7 +87,7 @@
             </div>
         {/if}
 
-        <button on:click={calculateDosage} class="py-2 mb-4 bg-sky-600 text-white px-10 rounded-lg w-full hover:bg-blue-700 transition hover:scale-100">Calculate Dose</button>
+        <button onclick={calculateDosage} class="py-2 mb-4 bg-sky-600 text-white px-10 rounded-lg w-full hover:bg-blue-700 transition hover:scale-100">Calculate Dose</button>
     </div>
 
     <div class="w-full">
