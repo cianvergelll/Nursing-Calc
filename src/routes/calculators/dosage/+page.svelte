@@ -2,7 +2,7 @@
 
     const inputStyle = "border p-2 rounded mb-2";
     const pStyle = "my-2 ml-5";
-    let totalDose =  $state(0);;
+    let totalDose =  $state(0);
     let weight = $state('');
     let dosePerKg =  $state('');
     let submitted = $state(false);
@@ -42,7 +42,7 @@
 
         weightInKg = convertWeight();
         let dosePerKgValue = convertDosage();
-        totalDose = weightInKg * dosePerKgValue;
+        totalDose = (weightInKg * dosePerKgValue).toFixed(2);
     }
 </script>
 

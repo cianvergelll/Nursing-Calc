@@ -2,14 +2,17 @@
     let activeTab = $state('mlhr');
     let volume = $state('');
     let infusionTime = $state('');
-    let submitted = $state(false);
-    let volumeInMl = $state('');
+    let flowRateSubmitted = $state(false);
+    let dripRateSubmitted = $state(false);
+    let flowRateInMl = $state('');
+    let totalFlowRate = $state(0);
+    let totalDripRate = $state(0);
 
     let selectedTimeUnit = $state('hr');
     let timeOptions = [
         { value: 'hr', label: 'hours' },
         { value: 'min', label: 'minutes' }
-    ];
+    ]; 
 
     let selecteddripFactor = $state('20');
     let dropFactorOptions = [
@@ -20,17 +23,33 @@
     ];
 
     function convertTime() {
+      const time = parseFloat(infusionTime);
       if (selectedTimeUnit === 'min') {
-        return parseFloat(infusionTime) / 60;
+        return time / 60;
+      } else {
+        return time;
       }
     }
     
     function calculateIVFlowRate() {
-        submitted = true;
-        let timeInHours = convertTime();
-        volumeInMl = parseFloat(volume) / timeInHours;
+        flowRateSubmitted = true;
+
+        const vol = parseFloat(volume);
+        const timeInHours = convertTime();
+        if (!isNaN(vol) && !isNaN(timeInHours) && timeInHours > 0) {
+            totalFlowRate = (vol / timeInHours).toFixed(2);
+        } else {
+            totalFlowRate = '';
+        }
     }
 
+    function calculateDripRate() {
+        dripRateSubmitted = true;
+
+        let flowRate = parseFloat(flowRateInMl);
+        let dropFactor = parseFloat(selecteddripFactor);
+        totalDripRate = (flowRate * dropFactor) / 60;
+    }
     const inputStyle = "border p-2 rounded mb-2";
      const pStyle = "my-2 ml-5";
 </script>
@@ -72,7 +91,7 @@
         
         <div class="flex flex-col mb-5">
           <label for="patient-weight" class="text-m mb-2 text-left">Total Volume (mL)</label>
-          <input type="number" bind:value={volumeInMl} placeholder="Enter volume in mL" />
+          <input type="number" bind:value={volume} placeholder="Enter volume in mL" />
         </div>
 
         <label for="patient-weight" class="text-m mb-5 text-left">Infusion Time</label>
@@ -84,6 +103,17 @@
             {/each}
         </select>
         </div>
+
+        {#if flowRateSubmitted && (!volume || !infusionTime)}
+            <p class="text-red-500 mb-4">Please enter volume and time</p>
+        {:else if flowRateSubmitted && volume && infusionTime}
+            <div class="w-full mb-5 bg-sky-100 p-4 rounded">
+                <label for="Calculated Dose" class="text-lg">Calculated Flow Rate:</label>
+                <p class="font-bold text-3xl my-1">{`${totalFlowRate} mL/${selectedTimeUnit}`}</p>
+                <p>{`Based on ${volume} mL over ${infusionTime} hours`}</p>
+            </div>
+        {/if}
+
         <button onclick={calculateIVFlowRate} class="py-2 mb-4 bg-sky-600 text-white px-10 rounded-lg w-full hover:bg-blue-700 transition hover:scale-100">Calculate Flow Rate</button>
     </div>
   {:else}
@@ -93,7 +123,7 @@
         
         <div class="flex flex-col mb-5">
           <label for="patient-weight" class="text-m mb-2 text-left">Flow Rate (mL/hr)</label>
-          <input type="number" bind:value={volumeInMl} placeholder="Enter flow rate in mL/hr" />
+          <input type="number" bind:value={flowRateInMl} placeholder="Enter flow rate in mL/hr" />
         </div>
 
         <div class="flex flex-col mb-5">
@@ -104,7 +134,18 @@
               {/each}
           </select>
         </div>
-        <button onclick={calculateIVFlowRate} class="py-2 mb-4 bg-sky-600 text-white px-10 rounded-lg w-full hover:bg-blue-700 transition hover:scale-100">Calculate Drip Rate</button>
+
+        {#if dripRateSubmitted && (!flowRateInMl)}
+            <p class="text-red-500 mb-4">Please enter volume and time</p>
+        {:else if dripRateSubmitted && flowRateInMl}
+            <div class="w-full mb-5 bg-sky-100 p-4 rounded">
+                <label for="Calculated Dose" class="text-lg">Calculated Flow Rate:</label>
+                <p class="font-bold text-3xl my-1">{`${totalDripRate} drops/min`}</p>
+                <p>{`Based on ${flowRateInMl} mL/hr with a ${selecteddripFactor} drops/mL drop factor`}</p>
+            </div>
+        {/if}
+
+        <button onclick={calculateDripRate} class="py-2 mb-4 bg-sky-600 text-white px-10 rounded-lg w-full hover:bg-blue-700 transition hover:scale-100">Calculate Drip Rate</button>
     </div>
 
   {/if}
