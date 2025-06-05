@@ -1,5 +1,6 @@
 <script lang="js">
     import Navbar from "../../component/Navbar.svelte";
+    import { FontAwesomeIcon } from "@fortawesome/svelte-fontawesome";
 
     let activeTab = $state('mlhr');
     let volume = $state('');

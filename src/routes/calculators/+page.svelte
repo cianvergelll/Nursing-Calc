@@ -1,6 +1,15 @@
 <script lang="js">
     import { FontAwesomeIcon } from '@fortawesome/svelte-fontawesome';
     import Navbar from '../component/Navbar.svelte';
+	import { goto } from '$app/navigation';
+
+    function Dosage() {
+        goto ('/calculators/dosage');
+    }
+
+    function IVFlow() {
+        goto ('/calculators/iv-flow');
+    }
 
     const divStyle_button = "py-3 bg-gradient-to-r from-sky-500 to-sky-800 rounded-lg text-white font-bold mt-5 mb-10 ml-5 hover:from-sky-800 hover:to-sky-500 transition-colors duration-300";
     const divStyle2_button = "py-3 bg-gradient-to-r from-sky-500 to-sky-800 rounded-lg text-white font-bold mt-11 mb-10 ml-5 hover:from-sky-800 hover:to-sky-500 transition-colors duration-300";
@@ -19,7 +28,7 @@
         <p class={`${pStyle} text-sm text-gray-600`}>Calculate medication dosages based on patient weight</p>
         <FontAwesomeIcon icon="flask" class="text-5xl text-sky-800 my-5" />
         <p class={pStyle}>Calculate dosages using the formula:<br>Dose = Weight × Dose per kg</p>
-        <button class={divStyle_button}>Calculate Dosage <FontAwesomeIcon icon="arrow-right" class="inline ml-2" /></button>
+        <button onclick={Dosage} class={divStyle_button}>Calculate Dosage <FontAwesomeIcon icon="arrow-right" class="inline ml-2" /></button>
     </div>
 
     <div class={divStyle}>
@@ -27,7 +36,7 @@
         <p class={`${pStyle} text-sm text-gray-600`}>Calculate drip rates and infusion times</p>
         <FontAwesomeIcon icon="flask" class="text-5xl text-sky-800 my-5" />
         <p class={pStyle}>Calculate flow rates using the formula:<br>Flow Rate (mL/hr) = (Volume × Drip Factor) ÷ Time</p>
-        <button class={divStyle_button}>Calculate Dosage <FontAwesomeIcon icon="arrow-right" class="inline ml-2" /></button>
+        <button onclick={IVFlow} class={divStyle_button}>Calculate Dosage <FontAwesomeIcon icon="arrow-right" class="inline ml-2" /></button>
     </div>
 
     <div class={divStyle}>
