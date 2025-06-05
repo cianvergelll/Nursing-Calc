@@ -10,6 +10,6 @@
         <li><a href="/" class={navButton}><FontAwesomeIcon icon="home" class="inline mr-2" />Home</a></li>
         <li><a href="/calculators" class={navButton}><FontAwesomeIcon icon="calculator" class="inline mr-2" />Calculators</a></li>
         <li><a href="/references" class={navButton}><FontAwesomeIcon icon="book" class="inline mr-2" />References</a></li>
-        <li><a href="/" class={navButton}><FontAwesomeIcon icon="exclamation-circle" class="inline mr-2" />About</a></li>
+        <li><a href="/about" class={navButton}><FontAwesomeIcon icon="exclamation-circle" class="inline mr-2" />About</a></li>
     </ul>
 </div>
