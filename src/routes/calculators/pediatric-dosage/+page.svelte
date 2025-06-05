@@ -119,7 +119,14 @@ function convertWeight() {
 
         <button onclick={calculateBSA} class="py-2 mb-4 bg-sky-600 text-white px-10 rounded-lg w-full hover:bg-blue-700 transition hover:scale-100">Calculate Body Surface Area (BSA)</button>
     </div>
-        
+    {:else if activeTab === 'pdc'}
+        <div class="w-full border border-gray-300 py-4 rounded-xl px-7 shadow-lg mt-5">
+            <p class="text-2xl font-bold flex flex-col">Pediatric Dosage Calculator</p>
+            <p class="text-sm mb-5 text-gray-500">Calculate pediatric dosages based on (BSA m² / 1.73) x Adult Dose</p>
+            
+            <!-- Add your pediatric dosage calculation logic here -->
+            <p class="text-lg mb-4">This section is under development.</p>
+        </div>
     {/if}
 </div>
 
