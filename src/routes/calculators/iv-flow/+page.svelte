@@ -87,7 +87,6 @@
       </button>
     </div>
 
-  <!-- Content area -->
   {#if activeTab === 'mlhr'}
     <div class="w-full border border-gray-300 py-4 rounded-xl px-7 shadow-xl my-5">
         <p class="text-2xl font-bold flex flex-col">IV Flow Rate Calculator (mL/hr)</p>

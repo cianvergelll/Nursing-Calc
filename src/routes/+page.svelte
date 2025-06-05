@@ -12,6 +12,10 @@
         goto('/calculators/iv-flow');
     }
 
+    function handlePDosageCalc() {
+        goto('/calculators/pediatric-dosage');
+    }
+
     const divStyle ="w-[30%] border border-gray-300 rounded-lg flex flex-col pl-5 shadow-xl";
     const divStyle_h1 = "font-bold text-3xl mt-7 ml-5";
     const divStyle_p = "text-s ml-5 text-gray-600 mb-5";
@@ -43,7 +47,7 @@
             <h1 class={divStyle_h1}>Pediatric Calculations</h1>
             <p class={divStyle_p}>Specialized calculations for pediatric patients</p>
             <h2 class={divStyle_h2}>Age and weight-based dosing calculators specifically designed for pediatric care.</h2>
-            <button class={divStyle_button}>Explore Now<FontAwesomeIcon icon="arrow-right" class="inline ml-2" /></button>
+            <button class={divStyle_button} on:click={handlePDosageCalc}>Explore Now<FontAwesomeIcon icon="arrow-right" class="inline ml-2" /></button>
         </div>
     </div>
 
