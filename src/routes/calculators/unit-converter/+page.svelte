@@ -6,6 +6,8 @@
 	let unitVolume = $state('');
 	let unitMass = $state('');
 
+	let resultMassUnit = $state(0);
+
 	let selectedBaseUnit = $state('mg');
 	let BaseUnitOption = [
 		{ label: 'mg', value: 'mg' },
@@ -36,6 +38,8 @@
 
 	const inputStyle = 'border p-2 rounded mb-2';
 	const pStyle = 'my-2 ml-5';
+
+	function calculateMassUnit() {}
 </script>
 
 <Navbar />
