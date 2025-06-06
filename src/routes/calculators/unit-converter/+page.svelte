@@ -152,16 +152,14 @@
 	<div class="w-full">
 		<p class="my-5 ml-5 text-2xl font-bold">How to Use This Calculator</p>
 		<p class="ml-5 text-lg">Mass (Weight) Calcaulator</p>
-		<p class={pStyle}>1. Enter the total volume to be infused in milliliters (mL)</p>
-		<p class={pStyle}>2. Enter the infusion time in hours or minutes</p>
-		<p class={pStyle}>3. Click "Calculate Flow Rate" to determine the flow rate in mL/hr</p>
+		<p class={pStyle}>1. Enter the value and select the base unit</p>
+		<p class={pStyle}>2. Select the appropriate value to convert into</p>
+		<p class={pStyle}>3. Click "convert Unit" to determine the resulting unit value</p>
 
-		<p class="mt-5 ml-5 text-lg">Drip Rate Calculator:</p>
-		<p class={pStyle}>1. Enter the flow rate in mL/hr</p>
-		<p class={pStyle}>
-			2. Select the appropriate drop factor based on your IV tubing (10, 15, 20, or 60 drops/mL)
-		</p>
-		<p class={pStyle}>3. Click "Calculate Drip Rate" to determine the drip rate in drops/min</p>
+		<p class="mt-5 ml-5 text-lg">Volume Calculator</p>
+		<p class={pStyle}>1. Enter the value and select the base unit</p>
+		<p class={pStyle}>2. Select the appropriate value to convert into</p>
+		<p class={pStyle}>3. Click "convert Unit" to determine the resulting unit value</p>
 	</div>
 
 	<div class="mt-5 mb-10 rounded-lg bg-sky-100 p-4">
