@@ -9,6 +9,7 @@
 	let volumeSubmitted = $state(false);
 
 	let resultMassUnit = $state(0);
+	let resultVolumeUnit = $state(0);
 
 	let selectedBaseUnit = $state('mg');
 	let BaseUnitOption = [
@@ -73,11 +74,11 @@
 			volumeSubmitted = true;
 
 			if (selectedBaseVolumeUnit === selectedResultVolumeUnit) {
-				resultMassUnit = unitVolume;
+				resultVolumeUnit = unitVolume;
 			} else if (selectedBaseVolumeUnit === 'mL' && selectedResultVolumeUnit === 'L') {
-				resultMassUnit = unitVolume / 1000;
+				resultVolumeUnit = unitVolume / 1000;
 			} else if (selectedBaseVolumeUnit === 'L' && selectedResultVolumeUnit === 'mL') {
-				resultMassUnit = unitVolume * 1000;
+				resultVolumeUnit = unitVolume * 1000;
 			}
 		}
 	}
