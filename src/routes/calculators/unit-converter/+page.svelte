@@ -5,6 +5,8 @@
 	let activeTab = $state('solid');
 	let unitVolume = $state('');
 	let unitMass = $state('');
+	let massSubmitted = $state(false);
+	let volumeSubmitted = $state(false);
 
 	let resultMassUnit = $state(0);
 
@@ -36,10 +38,36 @@
 		{ label: 'liters', value: 'L' }
 	];
 
+	function calculateConverstion() {
+		if (activeTab === 'solid') {
+			if (selectedBaseUnit === selectedResultUnit) {
+				resultMassUnit = unitMass;
+			} else if (selectedBaseUnit === 'mg' && selectedResultUnit === 'g') {
+				resultMassUnit = unitMass / 1000;
+			} else if (selectedBaseUnit === 'g' && selectedResultUnit === 'mg') {
+				resultMassUnit = unitMass * 1000;
+			} else if (selectedBaseUnit === 'kg' && selectedResultUnit === 'g') {
+				resultMassUnit = unitMass * 1000;
+			} else if (selectedBaseUnit === 'g' && selectedResultUnit === 'kg') {
+				resultMassUnit = unitMass / 1000;
+			} else if (selectedBaseUnit === 'mcg' && selectedResultUnit === 'mg') {
+				resultMassUnit = unitMass / 1000;
+			} else if (selectedBaseUnit === 'mg' && selectedResultUnit === 'mcg') {
+				resultMassUnit = unitMass * 1000;
+			}
+		} else {
+			if (selectedBaseVolumeUnit === selectedResultVolumeUnit) {
+				resultMassUnit = unitVolume;
+			} else if (selectedBaseVolumeUnit === 'mL' && selectedResultVolumeUnit === 'L') {
+				resultMassUnit = unitVolume / 1000;
+			} else if (selectedBaseVolumeUnit === 'L' && selectedResultVolumeUnit === 'mL') {
+				resultMassUnit = unitVolume * 1000;
+			}
+		}
+	}
+
 	const inputStyle = 'border p-2 rounded mb-2';
 	const pStyle = 'my-2 ml-5';
-
-	function calculateMassUnit() {}
 </script>
 
 <Navbar />
@@ -107,6 +135,16 @@
 				</select>
 			</div>
 
+			{#if massSubmitted && !unitMass}
+				<p class="mb-4 text-red-500">Please enter value for mass</p>
+			{:else if massSubmitted && unitMass}
+				<div class="mb-5 w-full rounded bg-sky-100 p-4">
+					<label for="Calculated Dose" class="text-lg">Converted Value:</label>
+					<p class="my-1 text-3xl font-bold">{`${PediatricDose} ${selectedAdultDose}`}</p>
+					<p>{`Based on (${patientBSA} m² / 1.73) x ${adultDose}`}</p>
+				</div>
+			{/if}
+
 			<button
 				onclick={calculateConcentration}
 				class="my-5 w-full rounded-lg bg-sky-600 px-10 py-2 text-white transition hover:scale-100 hover:bg-blue-700"
@@ -144,6 +182,16 @@
 					{/each}
 				</select>
 			</div>
+
+			{#if pdcSubmitted && (!adultDose || !patientBSA)}
+				<p class="mb-4 text-red-500">Please enter adult dose and patient BSA</p>
+			{:else if pdcSubmitted && adultDose && patientBSA}
+				<div class="mb-5 w-full rounded bg-sky-100 p-4">
+					<label for="Calculated Dose" class="text-lg">Calculated Dose:</label>
+					<p class="my-1 text-3xl font-bold">{`${PediatricDose} ${selectedAdultDose}`}</p>
+					<p>{`Based on (${patientBSA} m² / 1.73) x ${adultDose}`}</p>
+				</div>
+			{/if}
 
 			<button
 				onclick={calculateConcentration}
