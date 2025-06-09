@@ -38,7 +38,7 @@
 		{ label: 'liters', value: 'L' }
 	];
 
-	function calculateConverstion() {
+	function calculateConversion() {
 		if (activeTab === 'solid') {
 			if (selectedBaseUnit === selectedResultUnit) {
 				resultMassUnit = unitMass;
@@ -140,13 +140,13 @@
 			{:else if massSubmitted && unitMass}
 				<div class="mb-5 w-full rounded bg-sky-100 p-4">
 					<label for="Calculated Dose" class="text-lg">Converted Value:</label>
-					<p class="my-1 text-3xl font-bold">{`${PediatricDose} ${selectedAdultDose}`}</p>
-					<p>{`Based on (${patientBSA} m² / 1.73) x ${adultDose}`}</p>
+					<p class="my-1 text-3xl font-bold">{`${resultMassUnit}`}</p>
+					<!-- <p>{`Based on (${patientBSA} m² / 1.73) x ${adultDose}`}</p> -->
 				</div>
 			{/if}
 
 			<button
-				onclick={calculateConcentration}
+				onclick={calculateConversion}
 				class="my-5 w-full rounded-lg bg-sky-600 px-10 py-2 text-white transition hover:scale-100 hover:bg-blue-700"
 				>Convert Unit</button
 			>
@@ -183,18 +183,18 @@
 				</select>
 			</div>
 
-			{#if pdcSubmitted && (!adultDose || !patientBSA)}
-				<p class="mb-4 text-red-500">Please enter adult dose and patient BSA</p>
-			{:else if pdcSubmitted && adultDose && patientBSA}
+			{#if volumeSubmitted && !unitVolume}
+				<p class="mb-4 text-red-500">Please enter unit for volume</p>
+			{:else if volumeSubmitted && unitVolume}
 				<div class="mb-5 w-full rounded bg-sky-100 p-4">
-					<label for="Calculated Dose" class="text-lg">Calculated Dose:</label>
-					<p class="my-1 text-3xl font-bold">{`${PediatricDose} ${selectedAdultDose}`}</p>
-					<p>{`Based on (${patientBSA} m² / 1.73) x ${adultDose}`}</p>
+					<label for="Converted Value" class="text-lg">Converted Value:</label>
+					<p class="my-1 text-3xl font-bold">{`${resultVolumeUnit}`}</p>
+					<!-- <p>{`Based on (${patientBSA} m² / 1.73) x ${adultDose}`}</p> -->
 				</div>
 			{/if}
 
 			<button
-				onclick={calculateConcentration}
+				onclick={calculateConversion}
 				class="my-5 w-full rounded-lg bg-sky-600 px-10 py-2 text-white transition hover:scale-100 hover:bg-blue-700"
 				>Convert Unit</button
 			>
