@@ -40,22 +40,38 @@
 
 	function calculateConversion() {
 		if (activeTab === 'solid') {
+			massSubmitted = true;
+
 			if (selectedBaseUnit === selectedResultUnit) {
 				resultMassUnit = unitMass;
 			} else if (selectedBaseUnit === 'mg' && selectedResultUnit === 'g') {
 				resultMassUnit = unitMass / 1000;
-			} else if (selectedBaseUnit === 'g' && selectedResultUnit === 'mg') {
+			} else if (selectedBaseUnit === 'mg' && selectedResultUnit === 'mcg') {
 				resultMassUnit = unitMass * 1000;
-			} else if (selectedBaseUnit === 'kg' && selectedResultUnit === 'g') {
+			} else if (selectedBaseUnit === 'mg' && selectedResultUnit === 'kg') {
+				resultMassUnit = unitMass / 1000000;
+			} else if (selectedBaseUnit === 'g' && selectedResultUnit === 'mg') {
 				resultMassUnit = unitMass * 1000;
 			} else if (selectedBaseUnit === 'g' && selectedResultUnit === 'kg') {
 				resultMassUnit = unitMass / 1000;
+			} else if (selectedBaseUnit === 'g' && selectedResultUnit === 'mcg') {
+				resultMassUnit = unitMass * 1000000;
+			} else if (selectedBaseUnit === 'kg' && selectedResultUnit === 'g') {
+				resultMassUnit = unitMass * 1000;
+			} else if (selectedBaseUnit === 'kg' && selectedResultUnit === 'mg') {
+				resultMassUnit = unitMass * 1000000;
+			} else if (selectedBaseUnit === 'kg' && selectedResultUnit === 'mcg') {
+				resultMassUnit = unitMass * 1000000000;
 			} else if (selectedBaseUnit === 'mcg' && selectedResultUnit === 'mg') {
 				resultMassUnit = unitMass / 1000;
-			} else if (selectedBaseUnit === 'mg' && selectedResultUnit === 'mcg') {
-				resultMassUnit = unitMass * 1000;
+			} else if (selectedBaseUnit === 'mcg' && selectedResultUnit === 'g') {
+				resultMassUnit = unitMass / 1000000;
+			} else if (selectedBaseUnit === 'mcg' && selectedResultUnit === 'kg') {
+				resultMassUnit = unitMass / 1000000000;
 			}
 		} else {
+			volumeSubmitted = true;
+
 			if (selectedBaseVolumeUnit === selectedResultVolumeUnit) {
 				resultMassUnit = unitVolume;
 			} else if (selectedBaseVolumeUnit === 'mL' && selectedResultVolumeUnit === 'L') {
